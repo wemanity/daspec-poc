@@ -1,0 +1,5 @@
+{
+  "specs": ["specs/Accounts.md"],
+  "steps": ["tests/steps/account-step.js"],
+  "output-dir": "tests"
+}
