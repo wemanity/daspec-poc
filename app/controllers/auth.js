@@ -4,21 +4,26 @@ var Account = require("mongoose").model("Account", accountSchema);
 
 var createAccount = function(req, res, next){
   var username = req.body.username;
-  if(!Account.confirmPassword(req.body.password, req.body.confirmationPassword)){
-    return res.send({message: "Password and confirmation don't match"});
+  if(!Account.confirmPassword(req.body.password, req.body.passwordConfirmation)){
+    var myError = new Error("Password and confirmation don't match");
+    myError.type = "AuthError";
+    return next(myError);
   }
   Account.findOne({username: username}, function(err, account){
     if(err){
       return next(err);
     }
     if(account){
-      return res.status(401).send({"message":"An account with this username alreay exists"});
+      var myError = new Error("An account with this username alreay exists");
+      myError.type = "AuthError"
+      return next(myError);
     }
     else{
       var newAccount = new Account(req.body);
       newAccount.save(function(err, account){
         if(err){return next(err);}
-        return res.send({account: account.toObject()});
+        req.session.account = account.toObject();
+        return res.redirect("/profile");
       });
     }
   });
@@ -33,22 +38,26 @@ var logAccount = function(req, res, next){
     }
     if(account){
       if(account.comparePassword(password)){
-        req.session.account = {account: account.toObject()};
+        req.session.account = account.toObject();
         return res.redirect("/profile");
       }
       else{
-        return res.status(401).send({"message": "Wrong password"});
+        var myError = new Error("Wrong password");
+        myError.type = "AuthError";
+        return next(myError);
       }
     }
     else{
-      return res.status(404).send({"message": "There is no account with this username"});
+      var myError = new Error("There is no account with this username");
+      myError.type = "AuthError";
+      return next(myError);
     }
   });
 };
 
 var logout = function(req, res, next){
   req.session.destroy();
-  res.send({"message":"You should be logged out"});
+  res.redirect("/");
 };
 
 router.post("/signup", createAccount)

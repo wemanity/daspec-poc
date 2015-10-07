@@ -1,34 +1,33 @@
 extends layout
 
 block content
-  #signup
-    h2 Signup
-    form#signup-form(action="signup" method="post")
-      label Username
-      input(type="text" name="username")
-      label Password
-      input(type="password" name="password")
-      label Password confirmation
-      input(type="password" name="passwordConfirmation")
-      label First name:
-      input(type="text" name="firstname")
-      label Last name:
-      input(type="text" name="lastname")
-      label Date of birth:
-      input(type="date" name="birthDate")
-      label Account Type
-      select(name="type")
-        option(value="Free") Free
-        option(value="Premium") Premium
-      input(type="submit")
+  if(message)
+    .container
+      span.error= message
+  .container
+    span.form-block#signup
+      h2 Signup
+      form#signup-form(action="signup" method="post")
+        input#signup-username(type="text" name="username" placeholder="Username")
+        input#signup-password(type="password" name="password" placeholder="Password")
+        input#signup-confirmation(type="password" name="passwordConfirmation" placeholder="Password confirmation")
+        input#signup-firstname(type="text" name="firstname" placeholder="First name")
+        input#signup-lastname(type="text" name="lastname" placeholder="Last name")
+        input#signup-birthdate(type="date" name="birthdate" placeholder="Date of birth")
+        label Account Type: 
+        select#signup-type(name="type")
+          option(value="Free") Free
+          option(value="Premium") Premium
+        br
+        input#signup-submit(type="submit")
 
-  #login
-    h2 Login
-    form#login-form(action="login" method="post")
-      label Username
-      input(type="text" name="username")
-      label Password
-      input(type="password" name="password")
-      input(type="submit")
+    span(style="position:relative;top:130px;margin:45px") or
 
-  button Logout
+    span.form-block#login
+      h2 Login
+      form#login-form(action="login" method="post")
+        input#login-username(type="text" name="username" placeholder="Username")
+        input#login-password(type="password" name="password" placeholder="Password")
+        input#login-submit(type="submit")
+
+  script(src="js/index.js")

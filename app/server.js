@@ -9,6 +9,7 @@ var mongoose = require("mongoose");
 
 var config = require("./config/config");
 var router = require("./controllers/auth");
+var errorHandler = require("./controllers/errorHandler");
 var accountSchema = require("./models/account");
 var Account = mongoose.model("Account", accountSchema);
 
@@ -30,6 +31,7 @@ var sessionParams = {
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
+app.use(express.static(__dirname + "/client"));
 app.use(cookieParser());
 app.use(session(sessionParams));
 app.use(morgan("dev"));
@@ -44,29 +46,20 @@ app.get("/", function(req, res, next){
   return res.render("index");
 });
 
-app.get("/profile", function(req, res, next){
-  return res.render("profile");
+var requireLogin = function(req, res, next){
+  if(req.session.account){
+    return next();
+  }
+  else return res.redirect("/");
+}
+
+app.get("/profile", requireLogin, function(req, res, next){
+  return res.render("profile", {account: req.session.account});
 });
 
 app.use("/", router);
 
-app.use(function(err, req, res, next){
-  if(err.name == "ValidationError"){
-    for(error in err.errors){
-      switch(error){
-        case "username":
-          break;
-        case "password":
-          break;
-        case "type":
-          break;
-      }
-    }
-  }
-  console.log("SERVER ERROR ON", req.url);
-  console.log(err);
-  res.status(500).send("There was an error");
-});
+app.use(errorHandler);
 
 app.set('port', process.env.PORT || 8080);
 

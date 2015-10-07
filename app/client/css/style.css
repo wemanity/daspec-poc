@@ -1,0 +1,70 @@
+body{
+  font-size: 15px;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  font-weight: 200;
+  background-image: url("/img/pattern.png");
+}
+
+h1{
+  font-weight: 400;
+}
+
+h2{
+  font-weight: 300;
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid #48C6FF;
+  padding: 6px;
+  width: 250px;
+  margin: 15px;
+  display: block;
+  font-size: 15px;
+}
+
+input[type="submit"]{
+  border: 1px solid #48C6FF;
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input:focus{
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  font-family: Helvetica Neue, Helvetica;
+}
+
+.container{
+  text-align: center;
+}
+
+.center{
+  text-align: center;
+}
+
+.form-block{
+  margin: 9px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+  box-shadow: 5px 3px 12px 0px #B5B5B5;
+}
+
+.error{
+  background-color: #00FF00;
+  color: red;
+}
+
+select{
+  display:inline-block;
+  position: relative;
+  padding:0;
+  border:0;
+  border-radius:5px;
+  margin: 15px;
+}

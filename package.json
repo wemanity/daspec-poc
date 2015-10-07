@@ -6,6 +6,7 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.0",
+    "chromedriver": "^2.19.0",
     "cookie-parser": "^1.4.0",
     "cors": "^2.7.1",
     "daspec": "^1.0.1",
@@ -13,7 +14,9 @@
     "express-session": "^1.11.3",
     "jade": "^1.11.0",
     "mongoose": "^4.1.7",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "webdriverio": "^3.2.4",
+    "webdriverjs": "^1.7.5"
   },
   "devDependencies": {},
   "scripts": {

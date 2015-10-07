@@ -3,7 +3,16 @@ doctype html
 html
   head
     title DaSpec POC
+    script(src="lib/jquery-1.11.3.min.js")
+    link(rel="stylesheet" href="css/style.css" type="text/css")
 
   body
+    .header
+      h1.center(style="margin-bottom: -15px") Awesome App
+      h2.center
+        small
+          i Catchy headline to sell my awesome app
+      if(account)
+        a(href="/logout") Logout
     block content
 

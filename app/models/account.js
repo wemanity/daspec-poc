@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var usernameValidator = function(username){
-  return username.length <= 30 && username.length > 5;
+  return username.length <= 20 && username.length > 5;
 };
 
 var passwordValidator = function(password){
@@ -33,7 +33,7 @@ var accountSchema = new Schema({
 
 accountSchema.pre("save", function(next){
   if(this.isModified("password")){
-    console.log("shouldHashPassword");
+    //TODO
   }
   next();
 });
