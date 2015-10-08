@@ -48,12 +48,12 @@
 * Creating an account with nocaps12345 as password must be rejected.
 * Creating an account with ALLCAPS12345 as password must be rejected.
 * Creating an account with Pu1\.;,?\!:/_ as password must be accepted.
-* Creating an account with P@$£\*%§\#"~&a2 as password must be accepted.
+* Creating an account with P@$£\*%§\#"~&a2 as password must be rejected.
 
 
 * Creating an account with \(\[\]\)=\+@ 2Gh^~ as password must be accepted.
 
-* Creating an account with ¨'\`|Fss321 as password must be accepted.
+* Creating an account with ¨'\`|Fss321 as password must be rejected.
 * Creating an account with F0rb1ddenè as password must be rejected.
 * Creating an account with àF0rb1dden as password must be rejected.
 * Creating an account with f0rçb1DDen as password must be rejected.
@@ -80,7 +80,6 @@
 >A user can create a new account:
 
 | Account Type | Acount Name |   Password   | First Name | Last Name | Birth Date | Creation allowed                                                      |
-|--------------|-------------|--------------|------------|-----------|------------|-----------------------------------------------------------------------|
 | Free         | GreatClown  | 1mZeB8st     | Bozo       | The Clown | 03/13/1930 | yes                                                                   |
 | Free         | GreatClown  | 1mZeB8st     |            | The Clown | 03/13/1930 | yes                                                                   |
 | Free         | GreatClown  | 1mZeB8st     | Bozo       |           | 03/13/1930 | yes                                                                   |
